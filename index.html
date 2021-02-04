@@ -29,7 +29,7 @@
             </div>
         </form>
         <div class="weather-status text-white text-center">
-            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <img id="icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
             <h1 id="city">Dhaka</h1>
             <h3><span id="temp">38.06</span>&deg;C</h3>
             <h1 id="weather-condition" class="lead">Clouds</h1>
@@ -39,14 +39,17 @@
         
         document.getElementById('search-btn').addEventListener('click', function(){
             const inputValue = document.getElementById('inputValue').value;
-            fetch("http://api.openweathermap.org/data/2.5/weather?q="+inputValue+"&appid=21e61c909d0c21e077fa1af66c1ac40f")
+            fetch("https://api.openweathermap.org/data/2.5/weather?q="+inputValue+"&appid=21e61c909d0c21e077fa1af66c1ac40f")
             .then(res => res.json())
             .then(data =>{
             const celsius = data.main.temp - 273.15;
-            document.getElementById('temp').innerText= celsius ;
+            document.getElementById('temp').innerText= celsius;
             
             document.getElementById('weather-condition').innerText = data.weather[0].main; 
             document.getElementById('city').innerText = inputValue;
+
+           document.getElementById('icon').setAttribute
+           ('src','https://openweathermap.org/img/wn/'+data.weather[0].icon+'.png');
         })
      })
        
