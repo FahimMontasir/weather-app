@@ -42,7 +42,7 @@
             fetch("https://api.openweathermap.org/data/2.5/weather?q="+inputValue+"&appid=21e61c909d0c21e077fa1af66c1ac40f")
             .then(res => res.json())
             .then(data =>{
-            const celsius = data.main.temp - 273.15;
+            const celsius = Math.round(data.main.temp - 273.15);
             document.getElementById('temp').innerText= celsius;
             
             document.getElementById('weather-condition').innerText = data.weather[0].main; 
